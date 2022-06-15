@@ -6,4 +6,4 @@
       git config --global user.signingkey 0EBC54F6EDC08015 &&
       git config commit.gpgsign true
 
-alias gpg-login='echo 1 | gpg --clearsign'
+alias gpg-login='echo 1 | gpg --clearsign > /dev/null'
