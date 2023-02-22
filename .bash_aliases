@@ -1,3 +1,7 @@
+# git setup
+
+git config push.autoSetupRemote true
+
 # gpg setup
 
 [[ ! -z $GNUPG_KEY  ]] &&
