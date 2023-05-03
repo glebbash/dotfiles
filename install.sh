@@ -7,14 +7,14 @@ function main() {
 function aliases_setup() {
     echo "Setting up bash aliases"
 
-    cp ./.bash_aliases ~/.bash_aliases
+    cp "${HOME}/.dotfiles/.bash_aliases" "${HOME}/.bash_aliases"
 }
 
 function npm_setup() {
     echo "Setting up NPM"
 
     if [ -n "${EXTENDA_NEXUS_TOKEN:-}" ]; then
-        cp ./.npmrc ~/.npmrc
+        cp "${HOME}/.dotfiles/.npmrc" "${HOME}/.npmrc"
         npm i -g @hiiretail/nest-app-cli
     fi
 }
