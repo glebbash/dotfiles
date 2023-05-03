@@ -1,6 +1,13 @@
 function main() {
+    aliases_setup || (echo "aliases_setup job failed and exited" && exit 1)
     npm_setup || (echo "npm_setup job failed and exited" && exit 1)
     git_setup || echo "git_setup job failed and continued"
+}
+
+function aliases_setup() {
+    echo "Setting up bash aliases"
+
+    cp ./.bash_aliases ~/.bash_aliases
 }
 
 function npm_setup() {
