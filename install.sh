@@ -1,3 +1,5 @@
+#!/bin/bash
+
 main() {
     aliases_setup || (echo "aliases_setup job failed and exited" && exit 1)
     npm_setup || (echo "npm_setup job failed and exited" && exit 1)
