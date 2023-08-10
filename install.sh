@@ -27,7 +27,7 @@ git_setup() {
     git config --global push.autoSetupRemote true
 
     echo "Git: Use rebase to pull"
-    git config --global pull.rebase true
+    git config --global pull.rebase false
 
     if [ -n "${GPG_PRIVATE_KEY_BASE64:-}" ]; then
         echo "Git: Installing GPG key"
