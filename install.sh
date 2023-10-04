@@ -3,7 +3,8 @@
 main() {
     aliases_setup || (echo "aliases_setup job failed and exited" && exit 1)
     npm_setup || (echo "npm_setup job failed and exited" && exit 1)
-    git_setup || echo "git_setup job failed and continued"
+    git_setup || (echo "git_setup job failed and exited" && exit 1)
+    gcloud_auth_setup || (echo "gcloud_auth_setup job failed and exited" && exit 1)
 }
 
 aliases_setup() {
@@ -36,6 +37,14 @@ git_setup() {
         git config --global user.signingkey "${GPG_SIGNING_KEY}"
         git config --global commit.gpgsign true
         git config --global tag.gpgsign true
+    fi
+}
+
+gcloud_auth_setup() {
+    if [ -n "${EXTENDA_GCLOUD_AUTH_BASE64:-}" ]; then
+        echo "${EXTENDA_GCLOUD_AUTH_BASE64}" | base64 -d > ~/.config/gcloud/application_default_credentials.json
+        sudo mv ./docker-credential-gcr /usr/bin/docker-credential-gcr
+        /usr/bin/docker-credential-gcr configure-docker
     fi
 }
 
