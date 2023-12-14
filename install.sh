@@ -42,8 +42,9 @@ git_setup() {
 
 gcloud_auth_setup() {
     if [ -n "${EXTENDA_GCLOUD_AUTH_BASE64:-}" ]; then
+        mkdir -p ~/.config/gcloud
         echo "${EXTENDA_GCLOUD_AUTH_BASE64}" | base64 -d > ~/.config/gcloud/application_default_credentials.json
-        sudo mv ./docker-credential-gcr /usr/bin/docker-credential-gcr
+        sudo cp ./docker-credential-gcr /usr/bin/docker-credential-gcr
         sudo chmod +x /usr/bin/docker-credential-gcr
         /usr/bin/docker-credential-gcr configure-docker
     fi
