@@ -1,6 +1,10 @@
 #!/bin/bash
 
 main() {
+    if [ -f ".env" ]; then
+        source .env
+    fi
+
     aliases_setup || (echo "aliases_setup job failed and exited" && exit 1)
     npm_setup || (echo "npm_setup job failed and exited" && exit 1)
     git_setup || (echo "git_setup job failed and exited" && exit 1)
