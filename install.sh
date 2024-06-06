@@ -41,6 +41,8 @@ git_setup() {
 }
 
 gcloud_auth_setup() {
+    echo "Setting up GCloud auth"
+
     if [ -n "${EXTENDA_GCLOUD_AUTH_BASE64:-}" ]; then
         mkdir -p ~/.config/gcloud
         echo "${EXTENDA_GCLOUD_AUTH_BASE64}" | base64 -d > ~/.config/gcloud/application_default_credentials.json
