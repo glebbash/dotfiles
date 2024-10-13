@@ -9,6 +9,7 @@ main() {
     npm_setup || (echo "npm_setup job failed and exited" && exit 1)
     git_setup || (echo "git_setup job failed and exited" && exit 1)
     gcloud_auth_setup || (echo "gcloud_auth_setup job failed and exited" && exit 1)
+    curl -fsSL https://deno.land/install.sh | sh
 }
 
 aliases_setup() {
