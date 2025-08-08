@@ -23,6 +23,10 @@ npm_setup() {
 
     if [ -n "${EXTENDA_NEXUS_TOKEN:-}" ]; then
         cp "${HOME}/.dotfiles/.npmrc" "${HOME}/.npmrc"
+        
+        # inline env
+        sed -i "s|\${EXTENDA_NEXUS_TOKEN}|${EXTENDA_NEXUS_TOKEN}|g" "${HOME}/.npmrc"
+        
         npm i -g @hiiretail/nest-app-cli
     fi
 }
