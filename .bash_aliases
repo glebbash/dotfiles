@@ -1,4 +1,5 @@
-# drop annoying .gitpod.yml
-if [[ -z $(git ls-files --error-unmatch .gitpod.yml 2>/dev/null) ]]; then
-  rm .gitpod.yml 2> /dev/null
+if [[ -f .nvmrc ]]; then
+  nvm install
+  npx -y google-artifactregistry-auth
+  npm i -g @hiiretail/nest-app-cli
 fi

@@ -6,7 +6,6 @@ main() {
     fi
 
     aliases_setup || (echo "aliases_setup job failed and exited" && exit 1)
-    npm_setup || (echo "npm_setup job failed and exited" && exit 1)
     git_setup || (echo "git_setup job failed and exited" && exit 1)
     gcloud_auth_setup || (echo "gcloud_auth_setup job failed and exited" && exit 1)
     curl -fsSL https://deno.land/install.sh | sh -s -- -y
@@ -16,19 +15,6 @@ aliases_setup() {
     echo "Setting up bash aliases"
 
     cp "${HOME}/.dotfiles/.bash_aliases" "${HOME}/.bash_aliases"
-}
-
-npm_setup() {
-    echo "Setting up NPM"
-
-    if [ -n "${EXTENDA_NEXUS_TOKEN:-}" ]; then
-        cp "${HOME}/.dotfiles/.npmrc" "${HOME}/.npmrc"
-        
-        # inline env
-        sed -i "s|\${EXTENDA_NEXUS_TOKEN}|${EXTENDA_NEXUS_TOKEN}|g" "${HOME}/.npmrc"
-        
-        npm i -g @hiiretail/nest-app-cli
-    fi
 }
 
 git_setup() {
