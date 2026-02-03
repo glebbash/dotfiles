@@ -3,7 +3,7 @@ main() {
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
     
-    echo ".nvmc found, loading env..."
+    echo ".nvmrc found, loading env..."
     
     cmd nvm install
     cmd npx -y google-artifactregistry-auth
