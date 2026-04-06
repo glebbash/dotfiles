@@ -7,7 +7,6 @@ main() {
 
     aliases_setup || (echo "aliases_setup job failed and exited" && exit 1)
     git_setup || (echo "git_setup job failed and exited" && exit 1)
-    gcloud_auth_setup || (echo "gcloud_auth_setup job failed and exited" && exit 1)
     curl -fsSL https://deno.land/install.sh | sh -s -- -y
 }
 
@@ -32,18 +31,6 @@ git_setup() {
         git config --global user.signingkey "${GPG_SIGNING_KEY}"
         git config --global commit.gpgsign true
         git config --global tag.gpgsign true
-    fi
-}
-
-gcloud_auth_setup() {
-    echo "Setting up GCloud auth"
-
-    if [ -n "${EXTENDA_GCLOUD_AUTH_BASE64:-}" ]; then
-        mkdir -p ~/.config/gcloud
-        echo "${EXTENDA_GCLOUD_AUTH_BASE64}" | base64 -d > ~/.config/gcloud/application_default_credentials.json
-        sudo cp "${HOME}/.dotfiles/docker-credential-gcr" /usr/bin/docker-credential-gcr
-        sudo chmod +x /usr/bin/docker-credential-gcr
-        /usr/bin/docker-credential-gcr configure-docker
     fi
 }
 

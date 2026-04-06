@@ -6,11 +6,6 @@ main() {
     echo ".nvmrc found, loading env..."
     
     cmd nvm install
-    cmd npx -y google-artifactregistry-auth
-    
-    if ! npm list -g @hiiretail/nest-app-cli &> /dev/null; then
-      cmd npm i -g @hiiretail/nest-app-cli
-    fi
     
     clear
   fi
